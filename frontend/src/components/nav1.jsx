@@ -1,7 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { FaInstagram, FaFacebookF, FaTwitter, FaGithub } from "react-icons/fa6"
-
+import SocialMediaIcons from '@/atoms/SocialMediaIcons'
 const Nav1 = () => {
   return (
     <div className='w-full bg-[#474747] py-2 px-4 sm:px-6 md:px-8 lg:px-[180px] overflow-hidden'>
@@ -16,13 +15,7 @@ const Nav1 = () => {
             <Image src="/yummy@bistrobliss.svg" width={130} height={20} alt="Email address" />
           </a>
         </div>
-        <div className='flex items-center gap-[10px] mt-4 sm:mt-0'>
-          {[FaTwitter, FaFacebookF, FaInstagram, FaGithub].map((Icon, index) => (
-            <a key={index} href="#" className='w-[35px] h-[35px] bg-[#5C5C5C] rounded-full flex justify-center items-center cursor-pointer transition-colors hover:bg-[#6C6C6C]' aria-label={`Social media link ${index + 1}`}>
-              <Icon size={20} color='white' />
-            </a>
-          ))}
-        </div>
+        <SocialMediaIcons background="bg-[#6C6C6C]" />
       </div>
     </div>
   )
