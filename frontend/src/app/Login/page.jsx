@@ -1,12 +1,9 @@
+import { LogIn } from 'lucide-react'
 import React from 'react'
-
+import Login from '@/components/Login'
 const Page = () => {
   return (
-    <div className='w-full h-screen flex justify-center items-center bg-[#F9F9F7]'>
-        <div className>
-
-        </div>
-    </div>
+    <Login/>
   )
 }
 
