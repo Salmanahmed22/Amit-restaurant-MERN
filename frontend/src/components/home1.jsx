@@ -16,7 +16,7 @@ const Home1 = () => {
         </p>
        
         <div className='flex flex-col sm:flex-row gap-[20px] mt-5'>
-          <div className='flex gap-[10px] cursor-pointer w-[200px] h-[65px] justify-center items-center font-sans font-semibold border-2 border-[#ad343e] bg-[#ad343e] text-[#fff] rounded-[50px]'>
+          <div className='flex gap-[10px] cursor-pointer w-[200px] h-[65px] justify-center items-center font-sans font-semibold border-2 border-[#ad343e] bg-[#ad343e] text-[#fff] rounded-[50px] hover:bg-[#9e3434]'>
             <Link href={'/BookTable'}>Book a Table</Link>
           </div>
           <MyButton page={'/Menu'}>Explore Menu</MyButton>
