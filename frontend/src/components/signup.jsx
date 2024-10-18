@@ -47,7 +47,7 @@ const Signup = () => {
           <Label className='text-[#414536] font-medium' htmlFor="Confirm Password">Confirm Password</Label>
           <Input 
             className="rounded-[118px] h-[48px] md:h-[64px] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#b23b3b] focus-visible:border-[#b23b3b]" 
-            type="Confirm Password" 
+            type="Password" 
             id="Confirm Password"
             placeholder="Confirm Your Password" 
           />
