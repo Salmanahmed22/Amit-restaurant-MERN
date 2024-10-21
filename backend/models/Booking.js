@@ -28,12 +28,11 @@ const bookingSchema = new mongoose.Schema({
     },
     tableNumber: {
         type: String,
-        required: true
     },
     status: {
         type: String,
         enum: ["pending", "rejected", "accepted"],
-        required: true
+        default: "pending"
     },
 });
 
