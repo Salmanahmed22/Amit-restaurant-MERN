@@ -7,9 +7,6 @@ const connectDB = require('./config/db');
 
 connectDB();
 
-a
-
-
 
 app.get('/', (req, res) => {
     res.send('hello world')

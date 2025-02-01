@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState,  useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import MyButton from '../atoms/myButton'
@@ -11,8 +11,16 @@ const Nav2 = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isActive, setIsActive] = useState(1)
 
+  useEffect(() => {
+    const savedNav = localStorage.getItem('activeNav')
+    if (savedNav) {
+      setIsActive(parseInt(savedNav))
+    }
+  }, [])
+
   const handleActive = (index) => {
     setIsActive(index)
+    localStorage.setItem('activeNav', index.toString())
   }
 
   const toggleMenu = () => {
