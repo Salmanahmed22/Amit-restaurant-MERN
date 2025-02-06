@@ -7,7 +7,7 @@ const config = {
     mongoURI: process.env.MONGO_URI,
     jwt: {
         secret: process.env.JWT_SECRET,
-        exporation: process.env.JWT_EXPIRATION
+        expiration: process.env.JWT_EXPIRATION
     }
 }
 

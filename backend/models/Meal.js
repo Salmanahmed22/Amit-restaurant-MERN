@@ -5,7 +5,7 @@ const mealSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    descriptiion: {
+    description: {
         type: String,
         required: true
     },
@@ -25,4 +25,4 @@ const mealSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Meal', userSchema)
+module.exports = mongoose.model('Meal', mealSchema)

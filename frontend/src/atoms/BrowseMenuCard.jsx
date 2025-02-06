@@ -1,7 +1,15 @@
+'use client'
+
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 const BrowseMenuCard = ({icon,type }) => {
+
+  const handleExploreMenu = () => {
+    localStorage.setItem('activeNav', '3')
+     window.location.href = '/Menu'
+  }
+
   return (
     <div className='flex flex-col gap-[20px] justify-center items-center h-[375px] border-2 border-solid border-[#f3f3f0] text-center px-[20px] rounded-[15px]'>
             <div className='w-[100px] h-[100px] bg-[#f3f3f0] rounded-[50px] flex justify-center items-center'>
@@ -13,7 +21,7 @@ const BrowseMenuCard = ({icon,type }) => {
                 look in the future with certainty
                 <br />and pride for our life.
             </p>
-            <Link href={'/Menu'} className='text-[#ad343e] font-sans font-semibold'>Explore Menu</Link>
+            <Link onClick={() => handleExploreMenu()} href={'/Menu'} className='text-[#ad343e] font-sans font-semibold'>Explore Menu</Link>
         </div>
   )
 }

@@ -9,6 +9,14 @@ const createMeal = async (meal) => {
     }
 }
 
+const deleteMeal = async (id) => {
+    try{
+        return await Meal.findByIdAndDelete(id);
+    }catch(err){
+        throw new Error(err.message);
+    }
+}
+
 const updateMeal = async (id, meal) => {
     try{
         return await Meal.findByIdAndUpdate(id, meal, {new: true});
@@ -34,4 +42,4 @@ const getMealsByCategory = async (category) => {
 }
 
 
-module.exports = { getAllMeals, getMealsByCategory }
+module.exports = { getAllMeals, getMealsByCategory, updateMeal, createMeal, deleteMeal }

@@ -1,10 +1,16 @@
 const mongoose = require('mongoose');
-
+const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
-    name: {
+    firstName: {
         type: String,
         required: true
     },
+
+    lastName: {
+        type: String,
+        required: true          
+    },
+    
     email: {
         type: String,
         required: true
@@ -21,7 +27,8 @@ const userSchema = new mongoose.Schema({
     bookings: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Booking'
+            ref: 'Booking',
+            default: []
         }
     ]
 });

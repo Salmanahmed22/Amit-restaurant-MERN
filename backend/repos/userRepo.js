@@ -1,6 +1,6 @@
 const User = require('../models/User');
 
-const creareUser = async (user) => {
+const createUser = async (user) => {
     try{
         const newUser = new User(user);
         return await newUser.save();
@@ -17,6 +17,25 @@ const findUserByEmail = async (email) => {
     }
 }
 
-module.exports = {creareUser, findUserByEmail};
+const updateUser = async (id, user) => {
+    try {
+        const updatedUser = await User.findByIdAndUpdate(id, user, {new: true});
+        if (!updatedUser) {
+            throw new Error('User not found');
+        }
+        return updatedUser;
+    } catch(err) {
+        throw new Error(err.message);
+    }
+}
+
+const findUserById = async (id) => {
+    try{
+        return await User.findById(id);
+    }catch(err){
+        throw new Error(err.message);
+    }
+}
+module.exports = {createUser, findUserByEmail , updateUser, findUserById};
 
 
