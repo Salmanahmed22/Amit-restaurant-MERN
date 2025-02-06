@@ -4,7 +4,7 @@ const jsend = require('jsend');
 
 const getUser = async (req, res) => {
     try{
-        const user = await userServices.getUser(req.user.id);
+        const user = await userServices.getUser(req.user._id);
         res.json(jsend.success({user}));
     }catch(err){
         res.status(500).json(jsend.error({message: err.message}));

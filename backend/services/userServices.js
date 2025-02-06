@@ -22,7 +22,6 @@ const signUp = async (user) => {
 }
 
 
-// TODO password not matches
 const login = async (email, password) => {
     try {
         const foundUser = await userRepo.findUserByEmail(email);
@@ -30,10 +29,7 @@ const login = async (email, password) => {
         if (!foundUser) {
             throw new Error('User not found');
         }
-        const hashedPassword = await bcrypt.hash(password, 10);
         const isMatch = await bcrypt.compare(password, foundUser.password);
-        console.log(isMatch);
-        console.log(hashedPassword, foundUser.password);
         
         if (!isMatch) {
             throw new Error('Wrong password');
