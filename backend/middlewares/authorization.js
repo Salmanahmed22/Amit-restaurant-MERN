@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
 
-const authenticateToken = (req, res, next) => {
+const authorizeAdmin = (req, res, next) => {
     const authHeader = req.headers.authorization;
     
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -12,6 +12,12 @@ const authenticateToken = (req, res, next) => {
     
     try {
         const decoded = jwt.verify(token, config.jwt.secret); // Verify token
+        console.log(decoded.isAdmin);
+        console.log(decoded);
+        
+        if(decoded.isAdmin === false){
+            return res.status(403).json({ message: 'Forbidden: User is not admin' });
+        }
         req.user = decoded; // Attach user data (including ID) to req object 
         next(); // Proceed to next middleware or route handler
     } catch (err) {
@@ -19,4 +25,4 @@ const authenticateToken = (req, res, next) => {
     }
 };
 
-module.exports = {authenticateToken};
+module.exports = {authorizeAdmin};

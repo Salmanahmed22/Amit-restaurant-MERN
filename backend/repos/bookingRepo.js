@@ -17,14 +17,30 @@ const getAllPendingBookings = async () => {
     }
 }
 
-const updateBookingStatus = async (id, status) => {
+const getAllUserBookings = async (id) => {
     try{
-        return await Booking.findByIdAndUpdate(id, status, {new: true});
+        return await Booking.find({userId: id});
     }catch(err){
         throw new Error(err.message);
     }
 }
+const mongoose = require('mongoose');
+
+const updateBookingStatus = async (id, status) => {
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            throw new Error("Invalid Booking ID");
+        }
+        if (!["pending", "rejected", "accepted"].includes(status)) {
+            throw new Error("Invalid status value");
+        }
+        return await Booking.findByIdAndUpdate(id, { status }, { new: true });
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
 
 
 
-module.exports = { createBooking , updateBookingStatus, getAllPendingBookings }
+
+module.exports = { createBooking , updateBookingStatus, getAllPendingBookings , getAllUserBookings}

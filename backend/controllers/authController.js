@@ -9,8 +9,6 @@ const signup = async (req, res,next) => {
         if(!error.isEmpty())
             return res.status(400).json(error.array())
         
-        console.log(req.body);
-        
         const userDto = req.body
         const {user,token} = await authServices.signUp(userDto)
         res.cookie("token", token, { httpOnly: true }); 

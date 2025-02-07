@@ -26,13 +26,19 @@ const bookingSchema = new mongoose.Schema({
       enum: ["1", "2","3", "4", "+5" ],
       required: true  
     },
-    tableNumber: {
-        type: String,
-    },
+    // TODO what should we do!!!
+    // tableNumber: {
+    //     type: String,
+    // },
     status: {
         type: String,
         enum: ["pending", "rejected", "accepted"],
         default: "pending"
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
 });
 

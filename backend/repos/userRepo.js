@@ -44,6 +44,14 @@ const findAllUsers = async () => {
         throw new Error(err.message);
     }
 }
-module.exports = {createUser, findUserByEmail , updateUser, findUserById, findAllUsers};
+
+const updatedUser = async (id, user) => {
+    try{
+        return await user.findByIdAndUpdate(id, user, {new: true})
+    }catch(err){
+        throw new Error(err.message);
+    }
+}
+module.exports = {createUser, findUserByEmail , updateUser, findUserById, findAllUsers, updatedUser};
 
 

@@ -14,7 +14,14 @@ const signUp = async (user) => {
             throw new Error('User already exists');
         }
         const newUser = await userRepo.createUser(user);
-        const token = jwt.sign({id:newUser._id}, config.jwt.secret, {expiresIn: '1h'});
+        const token = jwt.sign({
+            id:newUser._id,
+            isAdmin: newUser.isAdmin,
+            email: newUser.email, 
+            firstName: newUser.firstName,
+            lastName: newUser.lastName
+        }
+        , config.jwt.secret, {expiresIn: '1d'});
         return {newUser, token};
     } catch (error) {
         throw new Error(error.message);
@@ -25,7 +32,6 @@ const signUp = async (user) => {
 const login = async (email, password) => {
     try {
         const foundUser = await userRepo.findUserByEmail(email);
-        console.log(foundUser,email);
         if (!foundUser) {
             throw new Error('User not found');
         }
@@ -78,11 +84,31 @@ const getUsers = async () => {
     }
 }
 
+const updateUser = async (id, user) => {
+    try {
+        const updatedUser = await userRepo.updateUser(id, user);
+        return updatedUser;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+const getBookings = async (id) => {
+    try {
+        const bookings = await bookingService.getAllUserBookings(id);
+        return bookings;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
 module.exports = {
     signUp,
     login,
     bookTable,
     viewMenu,
     getUser,
-    getUsers
+    getUsers,
+    updateUser,
+    getBookings
 }

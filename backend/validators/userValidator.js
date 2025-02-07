@@ -13,4 +13,11 @@ const loginUser = [
     body('password', 'password is required').isString().isLength({min: 8, max: 32})
 ]
 
-module.exports = {createUser, loginUser}
+const updateUser = [
+    body('firstName', 'first name is required').isString(),
+    body('lastName', 'last name is required').isString(),
+    body('email', 'email is required').isEmail(),
+    body('password', 'password is required').isString().isLength({min: 8, max: 32})
+]
+
+module.exports = {createUser, loginUser, updateUser}

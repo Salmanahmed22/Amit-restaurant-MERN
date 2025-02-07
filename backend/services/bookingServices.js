@@ -27,4 +27,13 @@ const getAllPendingBookings = async () => {
     }
 }
 
-module.exports = { createBooking, updateBookingStatus, getAllPendingBookings }
+const getAllUserBookings = async (id) => {
+    try {
+        const userBookings = await bookingRepo.getAllUserBookings(id);
+        return userBookings;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+
+module.exports = { createBooking, updateBookingStatus, getAllPendingBookings, getAllUserBookings }
