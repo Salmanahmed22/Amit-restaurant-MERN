@@ -13,8 +13,9 @@ router.post('/', createBooking, authenticateToken, (req, res, next)=>{
     }
     bookingController.createBooking(req, res, next);
     });
-
+// (admin)
 router.get('/', authorizeAdmin, bookingController.getPendingBookings);
+// (admin)
 router.put('/:id', authorizeAdmin, bookingController.updateBookingStatus);
 
 
