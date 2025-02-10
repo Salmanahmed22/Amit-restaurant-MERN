@@ -18,8 +18,7 @@ const signUp = async (user) => {
             id:newUser._id,
             isAdmin: newUser.isAdmin,
             email: newUser.email, 
-            firstName: newUser.firstName,
-            lastName: newUser.lastName
+            username: newUser.username
         }
         , config.jwt.secret, {expiresIn: '1d'});
         return {newUser, token};

@@ -1,23 +1,30 @@
 const express = require('express');
-const app = express();
-app.use(express.json());
+const cors = require('cors');
 const config = require('./config/config');
-const db = require('./config/db');
 const connectDB = require('./config/db');
-// const userRouter = require('./routers/userRouter');
+
 const authRouter = require('./routers/authRouter');
-const mealRouter = require('./routers/mealRouter');
 const userRouter = require('./routers/userRouter');
+const mealRouter = require('./routers/mealRouter');
 const bookingRouter = require('./routers/bookingRouter');
+
+const app = express();
+
+// Connect to Database
 connectDB();
 
+// Middleware
+app.use(cors()); // Allow cross-origin requests
+app.use(express.json()); // Parse incoming JSON requests
+
+// Routes
 app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);
-// app.use('/api/admin', authRouter);
 app.use('/api/menu', mealRouter);
 app.use('/api/bookings', bookingRouter);
 
+// Start Server
 const port = config.port || 5000;
 app.listen(port, () => {
-    console.log(`server is running on port ${port}`);
-})
+    console.log(`Server is running on port ${port}`);
+});
