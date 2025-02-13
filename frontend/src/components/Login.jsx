@@ -42,7 +42,9 @@ const Login = () => {
         document.cookie = `username=${username}`;
         document.cookie = `id=${id}`;
         toast.success('Login successful!');
-        window.location.href = '/';
+        setTimeout(() => {
+          window.location.href = '/';
+        },1000)
       } else {
         toast.error('Login failed: Token not found.');
       }

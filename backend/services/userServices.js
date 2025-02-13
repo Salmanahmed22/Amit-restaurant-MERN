@@ -20,7 +20,7 @@ const signUp = async (user) => {
             email: newUser.email, 
             username: newUser.username
         }
-        , config.jwt.secret, {expiresIn: '1d'});
+        , config.jwt.secret, {expiresIn: '1min'});
         return {newUser, token};
     } catch (error) {
         throw new Error(error.message);

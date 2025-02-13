@@ -22,9 +22,12 @@ const getUsers = async (req, res) => {
 
 const updateUser = async (req, res) => {
     try{
-        const user = await userServices.updateUser(req.user._id, req.body);
+        console.log(req.body);
+        console.log("heeyyy");
+        
+        const user = await userServices.updateUser(req.body._id, req.body);
         res.json(jsend.success({user}));
-    }catch(err){
+    }catch(err){body
         res.status(500).json(jsend.error({message: err.message}));
     }
 }

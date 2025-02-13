@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import toast, { Toaster } from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -38,12 +39,19 @@ const Signup = () => {
     setLoading(true);
 
     try {
+      const issAdmin = Cookies.get("isAdmin");
+      if (issAdmin) {
+        formData.isAdmin = issAdmin;
+      }
+
       await axios.post("http://localhost:5000/api/auth/signup", {
         username: formData.username,
         email: formData.email,
         password: formData.password,
-        isAdmin: formData.isAdmin,
+        isAdmin: formData.isAdmin
       });
+
+
 
       toast.success("Signup successful! Please log in.");
       setFormData({
@@ -124,20 +132,7 @@ const Signup = () => {
             className="rounded-[118px] h-[48px] md:h-[64px] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#b23b3b] focus-visible:border-[#b23b3b]"
           />
         </div>
-        {/* isAdmin Checkbox */}
-        <div className="flex items-center gap-2">
-          <input 
-            type="checkbox" 
-            id="isAdmin"
-            name="isAdmin"
-            checked={formData.isAdmin}
-            onChange={handleChange}
-            className="w-5 h-5 cursor-pointer"
-          />
-          <Label htmlFor="isAdmin" className="text-[#414536] font-medium cursor-pointer">
-            Register as Admin
-          </Label>
-        </div>
+
         <Button 
           type="submit" 
           className="w-full h-[48px] md:h-[64px] bg-[#b23b3b] hover:bg-[#9e3434] rounded-[118px]" 

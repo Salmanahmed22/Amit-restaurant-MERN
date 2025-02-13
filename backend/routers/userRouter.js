@@ -12,10 +12,14 @@ router.get('/',authorizeAdmin, userController.getUsers);
 
 router.put('/profile/', updateUser, authenticateToken, (req, res, next) => {
     const errors = validationResult(req);
+    
     if (!errors.isEmpty()) {
+        console.log(req.body);
+        logger.error(errors.array());
         return res.status(400).json({ errors: errors.array() });
     }
-    userController.updateUser(req, res, next);
+    
+    userController.updateUser(req, res,next);
 }); 
 router.get('/bookings/',authenticateToken, userController.getBookings);
 
