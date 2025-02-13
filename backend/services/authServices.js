@@ -11,8 +11,8 @@ const signUp = async (user) => {
 
 const login = async (email, password) => {
     try {
-        const token = await userServices.login(email, password);
-        return token;
+        const {token, user} = await userServices.login(email, password);
+        return {token, user};
     } catch (error) {    
         throw new Error(error.message);
     }

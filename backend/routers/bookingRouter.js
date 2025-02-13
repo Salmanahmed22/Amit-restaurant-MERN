@@ -7,7 +7,10 @@ const {authenticateToken} = require('../middlewares/authentication');
 const {authorizeAdmin} = require('../middlewares/authorization');
 
 router.post('/', createBooking, authenticateToken, (req, res, next)=>{
+    console.log(req.body);
     const errors = validationResult(req);
+    console.log("errorss "+errors.throw());
+    
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }

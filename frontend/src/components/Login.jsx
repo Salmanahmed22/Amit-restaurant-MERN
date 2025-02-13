@@ -32,10 +32,15 @@ const Login = () => {
       console.log('Full Response:', response); // Check full structure
       console.log('Response Data:', response?.data?.token); // Check what's inside data
     
-      // Ensure you're accessing the token correctly
-      const token = response.data?.token; // Use optional chaining
+      const token = response.data?.token;
+      const isAdmin = response.data?.isAdmin;
+      const username = response.data?.username;
+      const id = response.data?.id;
       if (token) {
         document.cookie = `token=${token}`;
+        document.cookie = `isAdmin=${isAdmin}`;
+        document.cookie = `username=${username}`;
+        document.cookie = `id=${id}`;
         toast.success('Login successful!');
         window.location.href = '/';
       } else {

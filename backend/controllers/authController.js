@@ -30,9 +30,12 @@ const login = async (req, res,next) => {
         if(!error.isEmpty())
              return res.status(400).json(error.array())
         const {email, password} = req.body
-        const token = await authServices.login(email, password)
-        res.cookie("token", token, { httpOnly: true }); 
-        return res.json(jsend.success({token}))
+        const {token,user} = await authServices.login(email, password)
+        res.cookie(
+            "token", token,
+            "isAdmin", user.isAdmin,
+             { httpOnly: true }); 
+        return res.json(jsend.success({token,isAdmin:user.isAdmin, username:user.username, id:user._id}))
     }catch(error){
         next(error) 
     }

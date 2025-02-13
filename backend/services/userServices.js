@@ -41,7 +41,7 @@ const login = async (email, password) => {
         }
         
         const token = jwt.sign({ _id: foundUser._id }, config.jwt.secret, { expiresIn: config.jwt.expiration });
-        return token;
+        return {token, user: foundUser};
     } catch (error) {
         throw new Error(error.message);
     }

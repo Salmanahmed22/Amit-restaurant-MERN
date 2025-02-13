@@ -13,7 +13,7 @@ router.post('/',authorizeAdmin, mealController.addMeal);
 // delete meal from menu (admin)
 router.delete('/:id',authorizeAdmin, mealController.deleteMeal);
 // get menu by category
-router.get('/:category', mealController.getMealsByCategory);
+    router.get('/:category', mealController.getMealsByCategory);
 // update meal (admin)
 router.put('/:id',authorizeAdmin, mealController.updateMeal);
 module.exports = router
