@@ -1,6 +1,6 @@
 const userServices = require('../services/userServices');
 const jsend = require('jsend');
-
+const jwt = require('jsonwebtoken');
 
 const getUser = async (req, res) => {
     try{
@@ -24,10 +24,13 @@ const updateUser = async (req, res) => {
     try{
         console.log(req.body);
         console.log("heeyyy");
+        const token = req.headers.authorization.split(' ')[1];
+        const id = jwt.decode(token)._id;
+        console.log(id);
         
-        const user = await userServices.updateUser(req.body._id, req.body);
+        const user = await userServices.updateUser(id, req.body);
         res.json(jsend.success({user}));
-    }catch(err){body
+    }catch(err){
         res.status(500).json(jsend.error({message: err.message}));
     }
 }

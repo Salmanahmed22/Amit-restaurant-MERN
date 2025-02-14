@@ -33,10 +33,11 @@ export default function ProfileInfo() {
     
 
     if(user.newPassword !== user.confirmPassword) {
-        Toaster.error("Passwords do not match");
+        toast.error("Passwords do not match");
       return;
     }
     const id = Cookies.get("id");
+    Cookies.set("username", user.username);
     try {
       const response = await axios.put(
         "http://localhost:5000/api/users/profile",
@@ -48,16 +49,15 @@ export default function ProfileInfo() {
           },
         }
       );
-      console.log(response.data.data.user);
-      
-      Cookies.set("username", response.data.data.user.username);
-      Toaster.success("Profile updated successfully!");
+      toast.success("Profile updated successfully!");
     } catch (error) {
-        Toaster.error(error.message);
+        toast.error(error.message);
     }
   };
 
   return (
+    <>
+    <Toaster position="top-center"/>
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
         <h1 className="text-xl font-semibold text-gray-800 text-center">Edit Profile</h1>
@@ -115,5 +115,6 @@ export default function ProfileInfo() {
         </form>
       </div>
     </div>
-  );
+    </>
+      );
 }

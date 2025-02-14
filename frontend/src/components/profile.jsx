@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import PersonalInfo from "./personalInfo"
 export default function ProfilePage() {
   return (
+    <>
     <div className="container mx-auto p-4">
       <h1 className="text-4xl font-semibold mb-4 text-center">
         <span >My Profile</span>
@@ -26,5 +27,6 @@ export default function ProfilePage() {
       </Tabs>
 
     </div>
+    </>
   )
 }

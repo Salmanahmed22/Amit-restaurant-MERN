@@ -20,7 +20,7 @@ const signUp = async (user) => {
             email: newUser.email, 
             username: newUser.username
         }
-        , config.jwt.secret, {expiresIn: '1min'});
+        , config.jwt.secret, {expiresIn: '1d'});
         return {newUser, token};
     } catch (error) {
         throw new Error(error.message);
@@ -85,6 +85,11 @@ const getUsers = async () => {
 
 const updateUser = async (id, user) => {
     try {
+        if(user.password){
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(user.password, salt);
+            user.password = hashedPassword;
+        }
         const updatedUser = await userRepo.updateUser(id, user);
         return updatedUser;
     } catch (error) {
