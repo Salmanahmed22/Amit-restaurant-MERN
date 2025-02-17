@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function ProfileInfo() {
-  const [user, setUser] = useState({ username: "", email: "" , newPassword:"", confirmPassword:""});
+  const [user, setUser] = useState({ username: "", email: "", newPassword: "", confirmPassword: "" });
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -17,8 +17,7 @@ export default function ProfileInfo() {
         });
         setUser(response.data.data.user);
       } catch (error) {
-        Toaster.error(error.message);
-      } finally {
+        toast.error(error.message);
       }
     };
 
@@ -30,18 +29,17 @@ export default function ProfileInfo() {
   };
 
   const handleSubmit = async (e) => {
-    
-
-    if(user.newPassword !== user.confirmPassword) {
-        toast.error("Passwords do not match");
+    e.preventDefault();
+    if (user.newPassword !== user.confirmPassword) {
+      toast.error("Passwords do not match");
       return;
     }
     const id = Cookies.get("id");
     Cookies.set("username", user.username);
     try {
-      const response = await axios.put(
+      await axios.put(
         "http://localhost:5000/api/users/profile",
-        { username: user.username, email: user.email , password:user.newPassword, _id:id},
+        { username: user.username, email: user.email, password: user.newPassword, _id: id },
         {
           headers: {
             Authorization: `Bearer ${Cookies.get("token")}`,
@@ -51,70 +49,70 @@ export default function ProfileInfo() {
       );
       toast.success("Profile updated successfully!");
     } catch (error) {
-        toast.error(error.message);
+      toast.error(error.message);
     }
   };
 
   return (
     <>
-    <Toaster position="top-center"/>
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
-        <h1 className="text-xl font-semibold text-gray-800 text-center">Edit Profile</h1>
-        <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Username</label>
-            <input
-              type="text"
-              name="username"
-              value={user.username}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded"
-              required
-            />
-          </div>
+      <Toaster position="top-center" />
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 sm:p-6 md:p-8">
+        <div className="w-full max-w-md sm:max-w-lg md:max-w-xl bg-white shadow-lg rounded-lg p-6 sm:p-8">
+          <h1 className="text-2xl sm:text-3xl font-semibold text-gray-800 text-center">Edit Profile</h1>
+          <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Username</label>
+              <input
+                type="text"
+                name="username"
+                value={user.username}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full border rounded focus:ring focus:ring-red-300"
+                required
+              />
+            </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={user.email}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">new password</label>
-            <input
-              type="password"
-              name="newPassword"
-              value={user.newPassword}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Confirm new password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={user.confirmPassword}
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded"
-            />
-          </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={user.email}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full border rounded focus:ring focus:ring-red-300"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">New Password</label>
+              <input
+                type="password"
+                name="newPassword"
+                value={user.newPassword}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full border rounded focus:ring focus:ring-red-300"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">Confirm New Password</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={user.confirmPassword}
+                onChange={handleChange}
+                className="mt-1 p-2 w-full border rounded focus:ring focus:ring-red-300"
+              />
+            </div>
 
-          <button
-            type="submit"
-            className="bg-[#ad343e] text-white px-4 py-2 rounded hover:bg-red-700"
-          >
-            Save Changes
-          </button>
-        </form>
+            <button
+              type="submit"
+              className="bg-[#ad343e] text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300"
+            >
+              Save Changes
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
     </>
-      );
+  );
 }

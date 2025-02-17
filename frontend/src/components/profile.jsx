@@ -1,6 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import PersonalInfo from "./personalInfo"
+import MyBookings from "./myBookings"
 export default function ProfilePage() {
   return (
     <>
@@ -21,7 +22,7 @@ export default function ProfilePage() {
         </TabsContent>
 
         <TabsContent value="my-bookings">
-          {/* <MyBookings /> */}
+          <MyBookings />
         </TabsContent>
                 
       </Tabs>
