@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import AdminPanel from '@/components/adminPanel'
 const Admin = () => {

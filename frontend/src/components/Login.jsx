@@ -43,7 +43,11 @@ const Login = () => {
         document.cookie = `id=${id}`;
         toast.success('Login successful!');
         setTimeout(() => {
-          window.location.href = '/';
+          if (isAdmin) {
+            window.location.href = '/admin';
+          } else {
+            window.location.href = '/';
+          }
         },1000)
       } else {
         toast.error('Login failed: Token not found.');

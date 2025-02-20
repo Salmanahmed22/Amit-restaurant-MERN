@@ -62,7 +62,11 @@ const Signup = () => {
         isAdmin: false,
       });
       //redirect
-      window.location.href = "/Login";
+      if (issAdmin) {
+        window.location.href = "/admin";
+      }else{
+        window.location.href = "/Login";
+      }
     } catch (err) {
       toast.error(err.response?.data?.message || "Signup failed. Try again.");
     } finally {

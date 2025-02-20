@@ -7,11 +7,13 @@ import { usePathname } from "next/navigation";
 import MyButton from "../atoms/myButton";
 import { FaBars, FaTimes } from "react-icons/fa";
 import LoginButton from "../atoms/loginButton";
-
+import Cookies from "js-cookie";
 const Nav2 = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname(); // Get current route
-
+  const isAdmin = Cookies.get("isAdmin");
+  console.log(isAdmin);
+  
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },

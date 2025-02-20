@@ -1,49 +1,44 @@
-// 'use client'
-// import { useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import MyBookings from "./myBookings"
+import Menu from "./menu"
+import Signup from "./signup"
+export default function ProfilePage() {
+  return (
+    <>
+    <div className="container mx-auto p-4">
+      <Tabs defaultValue="personal-info" className="w-full">
 
+        <TabsList className="grid w-full grid-cols-5">
+          <TabsTrigger value="edit-menu-items">Edit menu items</TabsTrigger>
+          <TabsTrigger value="add-menu-items">Add menu items</TabsTrigger>
+          <TabsTrigger value="pending-bookings">Pending bookings</TabsTrigger>
+          <TabsTrigger value="users">users</TabsTrigger>
+          <TabsTrigger value="register-admin">register admin</TabsTrigger>
+        </TabsList>
 
-// const AdminPanel = () => {
-//   const [activeTab, setActiveTab] = useState("menu");
+        <TabsContent value="edit-menu-items">
+          <Menu/>
+        </TabsContent>
 
-//   return (
-//     <div className="p-6 h-full w-full flex flex-col">
-//       {/* Tabs */}
-//       <div className="flex gap-4 mb-4">
-//         <button
-//           className={`px-4 py-2 ${activeTab === "menu" ? "bg-[#ad343e] text-white" : "bg-gray-200"}`}
-//           onClick={() => setActiveTab("menu")}
-//         >
-//           Menu
-//         </button>
-//         <button
-//           className={`px-4 py-2 ${activeTab === "bookings" ? "bg-[#ad343e] text-white" : "bg-gray-200"}`}
-//           onClick={() => setActiveTab("bookings")}
-//         >
-//           Bookings
-//         </button>
-//         <button
-//           className={`px-4 py-2 ${activeTab === "Add Item" ? "bg-[#ad343e] text-white" : "bg-gray-200"}`}
-//           onClick={() => setActiveTab("Add Item")}
-//         >
-//           Bookings
-//         </button>
-//         <button
-//           className={`px-4 py-2 ${activeTab === "register" ? "bg-[#ad343e] text-white" : "bg-gray-200"}`}
-//           onClick={() => setActiveTab("register")}
-//         >
-//           Register
-//         </button>
-//       </div>
+        <TabsContent value="add-menu-items">
+          <MyBookings />
+        </TabsContent>
 
-//       {/* Render Components Based on Active Tab */}
-//       <div className="border p-4 rounded">
-//         {activeTab === "menu" && <Menu />}
-//         {activeTab === "bookings" && <Bookings />}
-//         {activeTab === "Add Item" && <Bookings />}
-//         {activeTab === "register" && <Register />}
-//       </div>
-//     </div>
-//   );
-// }
+        <TabsContent value="pending-bookings">
+          <MyBookings />
+        </TabsContent>
 
-// export default AdminPanel;
+        <TabsContent value="users">
+          <MyBookings />
+        </TabsContent>
+
+        <TabsContent value="register-admin">
+          <Signup/>
+        </TabsContent>
+                
+      </Tabs>
+
+    </div>
+    </>
+  )
+}

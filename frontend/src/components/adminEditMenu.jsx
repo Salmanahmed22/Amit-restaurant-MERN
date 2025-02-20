@@ -4,11 +4,10 @@ import axios from "axios";
 import MenuCategoryButton from "@/atoms/menuCategoryButton";
 import MenuCard from "@/atoms/menuCard";
 import Loading from "@/app/loading";
-import Cookies from "js-cookie";
 
 const ITEMS_PER_PAGE = 8;
 
-const Menu = () => {
+const AdminEditMenu = () => {
   const [isActive, setIsActive] = useState(1);
   const [menuItems, setMenuItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
@@ -51,7 +50,6 @@ const Menu = () => {
     }
   };
 
-  const isAdmin = Cookies.get("isAdmin");
   // Calculate pagination
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
@@ -86,7 +84,6 @@ const Menu = () => {
         ].map((category) => (
           <MenuCategoryButton
             key={category.id}
-            isAdmin
             onClick={() => handleActive(category.id)}
             className={`text-sm sm:text-base ${
               isActive === category.id
@@ -102,7 +99,7 @@ const Menu = () => {
       {/* Menu Cards Grid */}
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-[20px] mt-6 sm:mt-8 lg:mt-10 px-4">
         {filteredItems.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((item) => (
-          <MenuCard isAdmin={isAdmin} key={item._id} image={item.image} price={item.price} title={item.name} discription={item.description} />
+          <MenuCard key={item._id} image={item.image} price={item.price} title={item.name} discription={item.description} />
         ))}
       </div>
 
@@ -130,4 +127,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default AdminEditMenu;
