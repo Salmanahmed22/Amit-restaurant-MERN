@@ -6,7 +6,7 @@ export default function ProfilePage() {
   return (
     <>
     <div className="container mx-auto p-4">
-      <Tabs defaultValue="personal-info" className="w-full">
+      <Tabs defaultValue="edit-menu-items" className="w-full">
 
         <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="edit-menu-items">Edit menu items</TabsTrigger>

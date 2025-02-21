@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import AdminNav from "../components/adminNav";
 
+
 export default function RootLayout({ children }) {
   const [isAdminPage, setIsAdminPage] = useState(Cookies.get("isAdmin") === "true");
 

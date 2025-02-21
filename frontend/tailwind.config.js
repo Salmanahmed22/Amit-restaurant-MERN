@@ -52,8 +52,14 @@ module.exports = {
   			}
   		},
   		fontFamily: {
-  			sans: ['DM Sans', 'sans-serif'],
-  			playfair: ['Playfair Display"', 'serif']
+  			sans: [
+  				'DM Sans',
+  				'sans-serif'
+  			],
+  			playfair: [
+  				'Playfair Display"',
+  				'serif'
+  			]
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

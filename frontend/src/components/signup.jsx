@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import toast, { Toaster } from "react-hot-toast";
 import Cookies from "js-cookie";
 
+
 const Signup = () => {
   const [formData, setFormData] = useState({
     username: "",
