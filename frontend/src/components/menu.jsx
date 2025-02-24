@@ -15,7 +15,7 @@ const Menu = () => {
   const [filteredItems, setFilteredItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedItem, setSelectedItem] = useState(null); // Track selected item for editing
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     const fetchMenuItems = async () => {

@@ -13,7 +13,6 @@ import LoginIcon from "@mui/icons-material/Login";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import toast, { Toaster } from "react-hot-toast";
-import { set } from "date-fns";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -82,6 +81,7 @@ export default function LoginButton({ display }) {
   const handleLogout = () => {
     Cookies.remove("token");
     Cookies.remove("isAdmin");
+    localStorage.removeItem("selectedTab");
     setIsLoggedIn(false);
     setAnchorEl(null);
     toast.success("Logout successful!");

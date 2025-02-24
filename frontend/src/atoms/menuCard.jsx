@@ -1,7 +1,6 @@
 "use client"
 import React from "react";
 import Image from "next/image";
-import axios from "axios";
 
 const MenuCard = ({ id, isAdmin, image, price, title, discription, onEdit }) => {
   return (

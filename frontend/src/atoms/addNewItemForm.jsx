@@ -1,87 +1,60 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
-import toast, { Toaster } from "react-hot-toast";
-
-export function DialogDemo({ isOpen, onClose, item }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    price: "",
-    description: "",
-    category: "",
-    image: ""
-  });
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (item) {
-      setFormData({
-        name: item.name || "",
-        price: item.price || "",
-        description: item.description || "",
-        category: item.category || "",
-        image: item.image || ""
+"use client"
+import React from 'react'
+import { useState } from 'react'
+import axios from 'axios'
+import Cookies from 'js-cookie'
+import toast, { Toaster } from 'react-hot-toast'
+import Loading from '@/app/loading'
+const AddNewItemForm = () => {
+    const [formData, setFormData] = useState({
+        name: "",
+        price: "",
+        description: "",
+        category: "",
+        image: ""
       });
-    }
-  }, [item]);
 
-  const handleChange = (e) => {
+    const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    
-    try {
-      const response = await axios.put(`http://localhost:5000/api/menu/${item._id}`, formData,{
-        headers: {
-          Authorization: `Bearer ${Cookies.get("token")}`,
-          "Content-Type": "application/json",
-        },
-      });
 
-      if (response.data.status === "success") {
-        toast.success("Menu item updated successfully!");
-        setTimeout(() => {
-          onClose();
-          window.location.reload();
-        },1000)
-      } else {
-        toast.error("Failed to update menu item.");
-      }
-    } catch (error) {
-      console.error("Error updating menu item:", error);
-      toast.error("An error occurred while updating the menu item.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (!isOpen) return null;
-
-  return (
-    <>
-    <Toaster position="buttom-left" />
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Edit Menu Item</h2>
-          <button 
-            onClick={onClose}
-            className="text-gray-500 hover:text-gray-700"
-            >
-            &times;
-          </button>
-        </div>
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         
-        <form onSubmit={handleSubmit}>
-          <div className="space-y-4">
+        try {
+          const response = await axios.post(`http://localhost:5000/api/menu/`, formData,{
+            headers: {
+              Authorization: `Bearer ${Cookies.get("token")}`,
+              "Content-Type": "application/json",
+            },
+          });
+          console.log(response);
+          
+          if (response.data.status === "success") {
+            toast.success("Menu item added successfully!");
+            setTimeout(() => {
+              window.location.reload();
+            },1000)
+          } else {
+            toast.error("Failed to add menu item.");
+          }
+        } catch (error) {
+          console.error("Error adding menu item:", error);
+          toast.error("An error occurred while adding the menu item.");
+        }
+      };
+  return (
+    <div className="h-screen shadow-lg flex items-center justify-center">
+        <Toaster position='top-right'/>
+      <div className="flex flex-col justify-center items-center bg-white rounded-lg p-6 w-full max-w-md">
+        <h1 className="text-xl font-semibold text-gray-800 text-center">My Bookings</h1>    
+        <form onSubmit={handleSubmit} className='shadow-lg p-4 w-[600px] flex flex-col justify-center items-center'>
+          <div className="space-y-4 w-full">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                 Name
@@ -97,7 +70,7 @@ export function DialogDemo({ isOpen, onClose, item }) {
                 />
             </div>
             
-            <div>
+            <div className="w-full">
               <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">
                 Price
               </label>
@@ -163,25 +136,16 @@ export function DialogDemo({ isOpen, onClose, item }) {
             </div>
           </div>
           
-          <div className="mt-6 flex justify-end space-x-3">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
-              >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={loading}
-              className="px-4 py-2 bg-[#AD343E] text-white rounded-md hover:bg-[#8B2C34] disabled:opacity-50"
-              >
-              {loading ? "Saving..." : "Save changes"}
-            </button>
-          </div>
+        <button
+            type="submit"
+            className="w-[200px] px-4 py-2 bg-[#AD343E] text-white rounded-md hover:bg-[#8B2C34] disabled:opacity-50"
+            >
+            Add Item
+        </button>
         </form>
       </div>
     </div>
-    </>
-  );
+  )
 }
+
+export default AddNewItemForm

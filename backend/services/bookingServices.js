@@ -1,8 +1,12 @@
 const bookingRepo = require('../repos/bookingRepo');
+const userRepo = require('../repos/userRepo');
 
 const createBooking = async (booking) => {
     try{
         const newBooking = await bookingRepo.createBooking(booking);
+        const user = await userRepo.findUserById(booking.userId);
+        user.bookings.push(newBooking._id);        
+        userRepo.updateUser(user._id, user);
         return newBooking;
     }catch(err){
         throw new Error(err.message);
