@@ -18,12 +18,12 @@ const About = () => {
 
   if (isLoading) return <Loading />;
   return (
-    <>
+    <div>
         <About1 />
         <About2 />
         <About3 />
         <About4 />
-    </>
+    </div>
   )
 }
 

@@ -66,7 +66,7 @@ export function DialogDemo({ isOpen, onClose, item }) {
   if (!isOpen) return null;
 
   return (
-    <>
+    <div>
     <Toaster position="buttom-left" />
     <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
       <div className="bg-white rounded-lg p-6 w-full max-w-md">
@@ -182,6 +182,6 @@ export function DialogDemo({ isOpen, onClose, item }) {
         </form>
       </div>
     </div>
-    </>
+    </div>
   );
 }

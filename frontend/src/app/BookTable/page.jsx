@@ -15,9 +15,7 @@ const page = () => {
 
   if (isLoading) return <Loading />;
   return (
-    <>
-        <BookTable />
-    </>
+    <BookTable />
   )
 }
 

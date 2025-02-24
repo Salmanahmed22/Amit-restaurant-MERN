@@ -42,12 +42,12 @@ const Footer = () => {
                     <h1 className='text-[16px] font-sans font-bold text-[#fff] mb-3'>Follow Us On Instagram</h1>
                     <div className='flex flex-col gap-3'>
                         <div className='flex gap-3'>
-                            <Image src={"/pexels-steve-3789885 1.png"} width={184} height={160} className='rounded-[10px] hover:scale-110 ease-in-out hover:duration-500 transition-transform cursor-pointer'></Image>
-                            <Image src={"/Mask group.png"} width={184} height={160} className='rounded-[10px] hover:scale-110 ease-in-out hover:duration-500 transition-transform cursor-pointer'></Image>
+                            <Image src={"/pexels-steve-3789885 1.png"} alt='footer' width={184} height={160} className='rounded-[10px] hover:scale-110 ease-in-out hover:duration-500 transition-transform cursor-pointer'></Image>
+                            <Image src={"/Mask group.png"} alt='footer' width={184} height={160} className='rounded-[10px] hover:scale-110 ease-in-out hover:duration-500 transition-transform cursor-pointer'></Image>
                         </div>
                         <div className='flex gap-3'>
-                            <Image src={"/Mask group (1).png"} width={184} height={160} className='rounded-[10px] hover:scale-110 ease-in-out hover:duration-500 transition-transform cursor-pointer'></Image>
-                            <Image src={"/Mask group (2).png"} width={184} height={160} className='rounded-[10px] hover:scale-110 ease-in-out hover:duration-500 transition-transform cursor-pointer'></Image>
+                            <Image src={"/Mask group (1).png"} alt='footer' width={184} height={160} className='rounded-[10px] hover:scale-110 ease-in-out hover:duration-500 transition-transform cursor-pointer'></Image>
+                            <Image src={"/Mask group (2).png"} alt='footer' width={184} height={160} className='rounded-[10px] hover:scale-110 ease-in-out hover:duration-500 transition-transform cursor-pointer'></Image>
                         </div>
                     </div>
                 </div>

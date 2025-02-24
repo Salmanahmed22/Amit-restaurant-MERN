@@ -54,7 +54,7 @@ export default function ProfileInfo() {
   };
 
   return (
-    <>
+    <div>
       <Toaster position="top-center" />
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 sm:p-6 md:p-8">
         <div className="w-full max-w-md sm:max-w-lg md:max-w-xl bg-white shadow-lg rounded-lg p-6 sm:p-8">
@@ -113,6 +113,6 @@ export default function ProfileInfo() {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 }

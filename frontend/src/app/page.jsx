@@ -31,9 +31,9 @@ export default function Home() {
   if (isLoading) return <Loading />;
 
   return (
-    <>
+    <div>
       <Home1 />
       <BrowseMenu />
-    </>
+    </div>
   );
 }

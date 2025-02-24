@@ -4,7 +4,6 @@ import { useState } from 'react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import toast, { Toaster } from 'react-hot-toast'
-import Loading from '@/app/loading'
 const AddNewItemForm = () => {
     const [formData, setFormData] = useState({
         name: "",
@@ -52,7 +51,7 @@ const AddNewItemForm = () => {
     <div className="h-screen shadow-lg flex items-center justify-center">
         <Toaster position='top-right'/>
       <div className="flex flex-col justify-center items-center bg-white rounded-lg p-6 w-full max-w-md">
-        <h1 className="text-xl font-semibold text-gray-800 text-center">My Bookings</h1>    
+        <h1 className="text-xl font-semibold text-gray-800 text-center">Add Menu Item</h1>    
         <form onSubmit={handleSubmit} className='shadow-lg p-4 w-[600px] flex flex-col justify-center items-center'>
           <div className="space-y-4 w-full">
             <div>

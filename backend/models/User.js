@@ -24,6 +24,12 @@ const userSchema = new mongoose.Schema({
             ref: 'Booking',
             default: []
         }
+    ],
+    notifications: [
+        {
+            type: String,
+            default: []
+        }
     ]
 });
 

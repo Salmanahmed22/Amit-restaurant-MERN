@@ -6,9 +6,7 @@ const AddMenuItem = () => {
     
 
   return (
-    <>
-        <AddNewItemForm />
-    </>
+    <AddNewItemForm />
   )
 }
 

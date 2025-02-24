@@ -121,7 +121,7 @@ export default function LoginButton({ display }) {
         disableScrollLock={true}
       >
         {isLoggedIn ? (
-          <>
+          <div>
             <MenuItem onClick={() => router.push("/profile")} disableRipple>
               <PersonIcon />
               Profile
@@ -131,9 +131,9 @@ export default function LoginButton({ display }) {
               <ExitToAppIcon />
               Logout
             </MenuItem>
-          </>
+          </div>
         ) : (
-          <>
+          <div>
             <MenuItem onClick={() => router.push("/Login")} disableRipple>
               <LoginIcon />
               Login
@@ -142,7 +142,7 @@ export default function LoginButton({ display }) {
               <AppRegistrationIcon />
               Register
             </MenuItem>
-          </>
+          </div>
         )}
       </StyledMenu>
     </div>

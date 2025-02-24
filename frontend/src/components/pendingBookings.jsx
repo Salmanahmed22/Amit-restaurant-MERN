@@ -53,7 +53,7 @@ const MyBookings = () => {
 
   if (isLoading) return <Loading />;
   return (
-    <>
+    <div>
     <Toaster position="top-right"/>
     <div className="flex flex-col items-center justify-center w-full h-auto bg-gray-100 p-4 gap-2">
         <h2 className="text-xl font-semibold text-gray-800 text-center">My Bookings</h2>
@@ -118,7 +118,7 @@ const MyBookings = () => {
             </table>
         </div>
     </div>
-    </>
+    </div>
   )
 }
 
