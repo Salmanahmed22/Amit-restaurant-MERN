@@ -15,7 +15,14 @@ export default function ProfileInfo() {
             Authorization: `Bearer ${Cookies.get("token")}`,
           },
         });
-        setUser(response.data.data.user);
+        
+        // Only update the fields from API, preserve password fields
+        setUser(prevUser => ({
+          ...prevUser,
+          username: response.data.data.user.username || "",
+          email: response.data.data.user.email || "",
+          // Keep the password fields as they were
+        }));
       } catch (error) {
         toast.error(error.message);
       }

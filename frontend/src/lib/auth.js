@@ -3,7 +3,8 @@ import Cookies from "js-cookie";
 
 export function isTokenExpired() {
     const token = Cookies.get("token");
-
+    console.log("tokennn", token);
+    
     if (!token) {
         console.log("Token is missing!");
         return true;
@@ -25,6 +26,4 @@ export function logoutUser() {
     Cookies.remove("isAdmin");
     Cookies.remove("username");
     Cookies.remove("id");
-
-    
 }

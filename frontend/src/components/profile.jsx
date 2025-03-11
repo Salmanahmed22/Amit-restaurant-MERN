@@ -12,11 +12,11 @@ export default function ProfilePage() {
       <Tabs defaultValue="personal-info" className="w-full">
 
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="personal-info">Personal Information</TabsTrigger>
+          <TabsTrigger value={"personal-info"}>Personal Information</TabsTrigger>
           <TabsTrigger value="my-bookings">My Bookings</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="personal-info">
+        <TabsContent value={"personal-info"}>
           <PersonalInfo />
         </TabsContent>
 

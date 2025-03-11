@@ -56,6 +56,8 @@ const Menu = () => {
   };
 
   const isAdmin = Cookies.get("isAdmin");
+  // console.log("isAdmin:", isAdmin);
+  
 
   if (isLoading) return <Loading />;
 

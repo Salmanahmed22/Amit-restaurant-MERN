@@ -15,9 +15,8 @@ export default function Home() {
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
-
-    const token = Cookies.get("token");
-    if (isTokenExpired(token)) {
+    const loggedin = Cookies.get("loggedin") === "true";
+    if (isTokenExpired() && loggedin) {
       console.log("Token expired");
       
       toast.error("Your session has expired. Please log in again.");

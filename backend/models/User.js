@@ -27,7 +27,8 @@ const userSchema = new mongoose.Schema({
     ],
     notifications: [
         {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Notification',
             default: []
         }
     ]

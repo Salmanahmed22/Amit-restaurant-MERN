@@ -81,10 +81,13 @@ export default function LoginButton({ display }) {
   const handleLogout = () => {
     Cookies.remove("token");
     Cookies.remove("isAdmin");
+    Cookies.remove("username");
+    Cookies.remove("login");
+    Cookies.set("loggedin", false);
     localStorage.removeItem("selectedTab");
     setIsLoggedIn(false);
     setAnchorEl(null);
-    toast.success("Logout successful!");
+    toast.success("Logout successfully!");
     setTimeout(() => {
       router.push("/");
     }, 1000);
@@ -92,6 +95,7 @@ export default function LoginButton({ display }) {
 
   return (
     <div className={display}>
+      <Toaster position="top-center"/>
       <Button
         id="customized-button"
         aria-controls={open ? "customized-menu" : undefined}

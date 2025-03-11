@@ -4,16 +4,18 @@ import Image from "next/image";
 import { usePathname } from "next/navigation"; 
 import { FaBars, FaTimes } from "react-icons/fa";
 import LoginButton from "../atoms/loginButton";
+import Cookies from "js-cookie";
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 
 const AdminNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname(); // Get current route
-
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  const loggedin = Cookies.get("loggedin") === "true";
 
+  
   return (
     <nav className="w-full py-4 px-4 sm:px-6 lg:px-8 xl:px-[180px]">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -27,7 +29,17 @@ const AdminNav = () => {
         <h1 className="text-4xl font-semibold text-center text-[#2C2F24]">
             Admin Panel
         </h1>
-        <LoginButton display={"hidden lg:flex"} />
+
+        <div className="flex gap-4 items-center">
+          {loggedin ? (
+            <div className="flex gap-4 items-center">
+              <LoginButton display={"hidden lg:flex"} />
+              <NotificationsNoneOutlinedIcon className="text-[#2C2F24] font-medium cursor-pointer"/>
+            </div>
+          ):(
+            <LoginButton display={"hidden lg:flex"} />
+          )}
+        </div>
 
         {/* Mobile Menu Button */}
         <button className="lg:hidden text-2xl" onClick={toggleMenu} aria-label={isMenuOpen ? "Close menu" : "Open menu"}>

@@ -3,6 +3,8 @@ import React from "react";
 import Image from "next/image";
 
 const MenuCard = ({ id, isAdmin, image, price, title, discription, onEdit }) => {
+  console.log("alooo",isAdmin);
+  
   return (
     <div className="w-full items-center max-w-[280px] h-auto sm:h-[400px] border-2 border-solid border-[#cfcfce] rounded-[12px] flex flex-col">
       <div className="relative w-full aspect-[4/3]">
@@ -12,7 +14,7 @@ const MenuCard = ({ id, isAdmin, image, price, title, discription, onEdit }) => 
         <h2 className="text-[#AD343E] font-bold text-lg sm:text-[20px] font-sans">${price}</h2>
         <h3 className="text-[#2C2F24] font-bold text-lg sm:text-[20px] font-sans">{title}</h3>
         <p className="text-[#414536c8] text-sm sm:text-[16px] text-center">{discription}</p>
-        {isAdmin && (
+        {isAdmin === true && (
           <button
             onClick={onEdit} 
             className="w-[100px] py-2 bg-[#AD343E] text-white rounded-[12px] hover:bg-[#8B2C34] transition"

@@ -41,6 +41,7 @@ const Login = () => {
         document.cookie = `isAdmin=${isAdmin}`;
         document.cookie = `username=${username}`;
         document.cookie = `id=${id}`;
+        document.cookie = `loggedin=${true}`;
         toast.success('Login successful!');
         setTimeout(() => {
           if (isAdmin) {

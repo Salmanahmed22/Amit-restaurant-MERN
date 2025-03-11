@@ -20,10 +20,10 @@ export function middleware(req) {
   }
 
   // Restrict access to /customer pages for non-customers
-  if (url.pathname.startsWith("/customer") && isAdmin.value !== "false") {
-    url.pathname = "/unauthorized";
-    return NextResponse.redirect(url);
-  }
+  // if (url.pathname.startsWith("/customer") && isAdmin.value !== "false") {
+  //   url.pathname = "/unauthorized";
+  //   return NextResponse.redirect(url);
+  // }
 
   return NextResponse.next(); // Allow access if role is correct
 }

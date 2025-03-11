@@ -8,11 +8,13 @@ import MyButton from "../atoms/myButton";
 import { FaBars, FaTimes } from "react-icons/fa";
 import LoginButton from "../atoms/loginButton";
 import Cookies from "js-cookie";
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+
 const Nav2 = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname(); // Get current route
-  const isAdmin = Cookies.get("isAdmin");
-  console.log(isAdmin);
+  const pathname = usePathname();
+  const loggedin = Cookies.get("loggedin") === "true";
+  console.log("heyy",loggedin);
   
   const navLinks = [
     { href: "/", label: "Home" },
@@ -55,7 +57,16 @@ const Nav2 = () => {
         <div className="hidden lg:block">
           <MyButton page="/BookTable">Book a Table</MyButton>
         </div>
-        <LoginButton display={"hidden lg:flex"} />
+        <div className="flex gap-4 items-center">
+          {loggedin ? (
+            <div className="flex gap-4 items-center">
+              <LoginButton display={"hidden lg:flex"} />
+              <NotificationsNoneOutlinedIcon className="text-[#2C2F24] font-medium"/>
+            </div>
+          ):(
+            <LoginButton display={"hidden lg:flex"} />
+          )}
+        </div>
 
         {/* Mobile Menu Button */}
         <button className="lg:hidden text-2xl" onClick={toggleMenu} aria-label={isMenuOpen ? "Close menu" : "Open menu"}>

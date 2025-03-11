@@ -7,6 +7,7 @@ const authRouter = require('./routers/authRouter');
 const userRouter = require('./routers/userRouter');
 const mealRouter = require('./routers/mealRouter');
 const bookingRouter = require('./routers/bookingRouter');
+const notificationRouter = require('./routers/notificationRouter');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/menu', mealRouter);
 app.use('/api/bookings', bookingRouter);
+app.use('/api/notifications', notificationRouter);
 
 // Start Server
 const port = config.port || 5000;

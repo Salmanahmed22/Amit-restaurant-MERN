@@ -40,7 +40,7 @@ const login = async (email, password) => {
             throw new Error('Wrong password');
         }
         
-        const token = jwt.sign({ _id: foundUser._id }, config.jwt.secret, { expiresIn: config.jwt.expiration });
+        const token = jwt.sign({ _id: foundUser._id }, config.jwt.secret, { expiresIn: "1d" });
         return {token, user: foundUser};
     } catch (error) {
         throw new Error(error.message);
