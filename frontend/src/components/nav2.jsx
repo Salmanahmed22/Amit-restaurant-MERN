@@ -61,7 +61,7 @@ const Nav2 = () => {
           {loggedin ? (
             <div className="flex gap-4 items-center">
               <LoginButton display={"hidden lg:flex"} />
-              <NotificationsNoneOutlinedIcon className="text-[#2C2F24] font-medium"/>
+              <NotificationsNoneOutlinedIcon className="hidden lg:flex text-[#2C2F24] font-medium"/>
             </div>
           ):(
             <LoginButton display={"hidden lg:flex"} />
@@ -89,6 +89,7 @@ const Nav2 = () => {
                 {link.label}
               </Link>
             ))}
+            <NotificationsNoneOutlinedIcon className="text-[#2C2F24] font-medium"/>
             <div className="mt-6 mb-6">
               <MyButton page="/BookTable">Book a Table</MyButton>
             </div>
