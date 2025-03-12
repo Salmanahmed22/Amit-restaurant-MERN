@@ -1,5 +1,6 @@
 const bookingRepo = require('../repos/bookingRepo');
 const userRepo = require('../repos/userRepo');
+const notificationServices = require('./notificationServices');
 
 const createBooking = async (booking) => {
     try{
@@ -16,6 +17,11 @@ const createBooking = async (booking) => {
 const updateBookingStatus = async (id, status) => {
     try{
         const newookingStatus = await bookingRepo.updateBookingStatus(id, status);
+        const notification = {
+            userId: newookingStatus.userId,
+             message: `Your booking at day: ${newookingStatus.date}, time: ${newookingStatus.time} has been ${newookingStatus.status}`
+            }
+        const newNotification = await notificationServices.createNotification(notification);
         return newookingStatus;
     }catch(err){
         throw new Error(err.message);

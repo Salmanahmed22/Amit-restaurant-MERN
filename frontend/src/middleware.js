@@ -19,16 +19,11 @@ export function middleware(req) {
     return NextResponse.redirect(url);
   }
 
-  // Restrict access to /customer pages for non-customers
-  // if (url.pathname.startsWith("/customer") && isAdmin.value !== "false") {
-  //   url.pathname = "/unauthorized";
-  //   return NextResponse.redirect(url);
-  // }
 
   return NextResponse.next(); // Allow access if role is correct
 }
 
 // Apply middleware only to protected routes
 export const config = {
-  matcher: ["/admin/:path*", "/customer/:path*"],
+  matcher: ["/admin/:path*",],
 };

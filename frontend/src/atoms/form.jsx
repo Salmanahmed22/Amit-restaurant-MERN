@@ -72,7 +72,6 @@ const Form = () => {
 
   return (
     <div>
-      <Toaster position="top-right" />
       <form onSubmit={handleSubmit} className="lg:w-[812px] lg:h-[505px] bg-[#FFFFFF] rounded-[16px] p-4 md:p-8 md:w-[600px] md:h-[550px] flex flex-col gap-4 md:gap-[10px] justify-around shadow-lg">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">

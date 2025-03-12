@@ -83,6 +83,7 @@ export default function LoginButton({ display }) {
     Cookies.remove("isAdmin");
     Cookies.remove("username");
     Cookies.remove("login");
+    Cookies.remove("id");
     Cookies.set("loggedin", false);
     localStorage.removeItem("selectedTab");
     setIsLoggedIn(false);
@@ -91,6 +92,7 @@ export default function LoginButton({ display }) {
     setTimeout(() => {
       router.push("/");
     }, 1000);
+    window.location.reload();
   };
 
   return (

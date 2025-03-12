@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
 
 const notificationsSchema = mongoose.Schema({
-    massage: {
+    message: {
         type: String,
     },
-    isRead: {
+    seen: {
         type: Boolean,
         default: false
+    },
+    time: {
+        type: String,
+        default: Date.now,
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
