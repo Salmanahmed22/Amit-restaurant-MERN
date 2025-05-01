@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation"; 
 import { FaBars, FaTimes } from "react-icons/fa";
 import LoginButton from "../atoms/loginButton";
 import Cookies from "js-cookie";

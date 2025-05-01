@@ -6,15 +6,33 @@ import Menu from "./menu";
 import Signup from "./signup";
 import ViewUsers from "./viewUsers";
 import AddMenuItem from "./addMenuItem";
+
 export default function ProfilePage() {
-  // Load the saved tab from localStorage or default to "edit-menu-items"
-  const [selectedTab, setSelectedTab] = useState(
-    () => localStorage.getItem("selectedTab") || "edit-menu-items"
-  );
-  // Update localStorage whenever selectedTab changes
+  // Start with a default value
+  const [selectedTab, setSelectedTab] = useState("edit-menu-items");
+  const [mounted, setMounted] = useState(false);
+
+  // Move localStorage operations to useEffect
   useEffect(() => {
-    localStorage.setItem("selectedTab", selectedTab);
-  }, [selectedTab]);
+    // This will only run in the browser
+    const savedTab = localStorage.getItem("selectedTab");
+    if (savedTab) {
+      setSelectedTab(savedTab);
+    }
+    setMounted(true);
+  }, []);
+
+  // Save to localStorage when tab changes
+  useEffect(() => {
+    if (mounted) {
+      localStorage.setItem("selectedTab", selectedTab);
+    }
+  }, [selectedTab, mounted]);
+
+  // Optional: Prevent rendering until after mount
+  if (!mounted) {
+    return null; // or a loading spinner
+  }
 
   return (
     <div className="container mx-auto p-4">

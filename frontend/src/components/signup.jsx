@@ -77,7 +77,7 @@ const Signup = () => {
 
   return (
     <div className="w-full h-auto flex flex-col justify-center items-center bg-[#F9F9F7] pb-[40px]">
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-center"/>
       <h1 className="text-[#2C2F24] font-playfair text-[40px] md:text-[60px] lg:text-[80px] text-center">
         Signup
       </h1>
