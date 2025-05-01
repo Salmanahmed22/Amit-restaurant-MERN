@@ -1,21 +1,37 @@
 "use client"
 import React, { useState } from 'react'
 import axios from 'axios'
+import Cookies from 'js-cookie'
+import { useEffect } from 'react'
 
-const NotificationDropDown = ({notifications: initialNotifications}) => {
-    const [notifications, setNotifications] = useState(initialNotifications);
-
+const NotificationDropDown = ({notifications,onUpdate}) => {
+    const [myNotifications, setMyNotifications] = useState(notifications);
+    const userId = Cookies.get("id");
+    
+    useEffect(() => {
+        async function fetchUserNotifications() {
+      
+            try {
+              const response = await axios.get(`http://localhost:5000/api/notifications?userId=${userId}`);
+              console.log("userIdd",userId);
+              setMyNotifications(response.data.data.notifications);
+              console.log("notificationnnn",response.data.data.notifications);
+              
+            } catch (error) {
+              console.error("Error fetching notifications:", error);
+            }
+          }
+          fetchUserNotifications();
+    },[])
     const handleClick = async (notificationId, seen) => {
-        console.log("updaate notificationnn");
-        console.log(notificationId);
-        
+        console.log("notificationId", notificationId);
         
         try {
-            await axios.put(`http://localhost:5000/api/notifications/update`, {seen, notificationId});
+            await axios.put(`http://localhost:5000/api/notifications`, {seen, notificationId});
             
             // Update the local state to mark notification as seen
-            setNotifications(prevNotifications => 
-                prevNotifications.map(notification => 
+            setMyNotifications(prevNotifications => 
+                prevNotifications.map(notification =>
                     notification._id === notificationId 
                         ? {...notification, seen: true} 
                         : notification
@@ -28,19 +44,15 @@ const NotificationDropDown = ({notifications: initialNotifications}) => {
 
     const markAllAsRead = async () => {
         try {
-            // Only attempt to mark unread notifications as read
-            const unreadIds = notifications
-                .filter(notification => !notification.seen)
-                .map(notification => notification._id);
-            
-            if (unreadIds.length === 0) return;
-
-            await axios.put(`http://localhost:5000/api/notifications/mark-all-read`, {ids: unreadIds});
+            console.log("markAllasRead");
             
             // Update all notifications as seen in the local state
-            setNotifications(prevNotifications => 
+            setMyNotifications(prevNotifications => 
                 prevNotifications.map(notification => ({...notification, seen: true}))
             );
+
+            await axios.put(`http://localhost:5000/api/notifications/mark-all-read?userId=${userId}`);
+            
         } catch(err) {
             console.error("Error marking all as read:", err.message);
         }
@@ -52,12 +64,15 @@ const NotificationDropDown = ({notifications: initialNotifications}) => {
                 <h3 className="text-lg font-medium text-[#2C2F24]">Notifications</h3>
             </div>
             <div className="max-h-96 overflow-y-auto">
-                {notifications.length > 0 ? (
-                notifications.map((notification) => (
+                {myNotifications.length > 0 ? (
+                myNotifications.map((notification) => (
                     <div
                     key={notification._id}
                     className={`p-4 border-b border-gray-100 hover:bg-gray-50 transition-transform hover:scale-105 cursor-pointer ${!notification.seen ? "bg-gray-50" : ""}`}
-                    onClick={() => handleClick(notification._id, true)}
+                    onClick={
+                        () => handleClick(notification._id, true)
+                        .then(() => onUpdate(myNotifications))
+                    }
                     >
                     <div className="flex items-start">
                         <div className="flex-1">

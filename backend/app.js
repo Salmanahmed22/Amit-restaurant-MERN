@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const config = require('./config/config');
 const connectDB = require('./config/db');
-
+const path = require('path');
 const authRouter = require('./routers/authRouter');
 const userRouter = require('./routers/userRouter');
 const mealRouter = require('./routers/mealRouter');
@@ -24,6 +24,8 @@ app.use('/api/auth', authRouter);
 app.use('/api/menu', mealRouter);
 app.use('/api/bookings', bookingRouter);
 app.use('/api/notifications', notificationRouter);
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Start Server
 const port = config.port || 5000;

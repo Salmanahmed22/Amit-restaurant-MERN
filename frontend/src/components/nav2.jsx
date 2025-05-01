@@ -15,6 +15,8 @@ import axios from "axios"
 const Nav2 = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false)
+  const [unSeenNotification, setUnSeenNotification] = useState(false)
+  
   const [notifications, setNotifications] = useState([])
   const notificationRef = useRef(null)
   const pathname = usePathname()
@@ -27,10 +29,8 @@ const Nav2 = () => {
       
       try {
         const response = await axios.get(`http://localhost:5000/api/notifications?userId=${userId}`);
-        console.log("userIdd",userId);
         setNotifications(response.data.data.notifications);
-        console.log("notificationnnn",response.data.data.notifications);
-        
+        handleIfThereIsUnseenNotification(response.data.data.notifications);
       } catch (error) {
         console.error("Error fetching notifications:", error);
       }
@@ -40,6 +40,7 @@ const Nav2 = () => {
       fetchUserNotifications();
     }
 
+    
     function handleClickOutside(event) {
       if (notificationRef.current && !notificationRef.current.contains(event.target)) {
         setIsNotificationsOpen(false)
@@ -58,6 +59,13 @@ const Nav2 = () => {
     { href: "/Menu", label: "Menu" },
     { href: "/Contact", label: "Contact" },
   ]
+
+  const handleIfThereIsUnseenNotification = (notifications) => {
+    if(notifications.some((n) => !n.seen)){      
+      setUnSeenNotification(true);
+    }
+  }
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -104,16 +112,17 @@ const Nav2 = () => {
                 <div className="relative">
                   <NotificationsNoneOutlinedIcon
                     className="hidden lg:flex text-[#2C2F24] font-medium cursor-pointer hover:text-[#ad343e]"
-                    onClick={toggleNotifications}
-                  />
-                  {notifications.some((n) => !n.seen) && (
+                    onClick={toggleNotifications}/>
+                  {unSeenNotification && (
                     <span className="absolute -top-1 -right-1 bg-[#ad343e] rounded-full w-2 h-2"></span>
                   )}
                 </div>
 
                 {/* Notification Dropdown */}
                 {isNotificationsOpen && (
-                  <NotificationDropDown notifications={notifications} />
+                  <NotificationDropDown
+                   notifications={notifications}
+                   onUpdate={handleIfThereIsUnseenNotification} />
                 )}
               </div>
             </div>

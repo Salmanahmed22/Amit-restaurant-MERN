@@ -30,9 +30,18 @@ const markNotificationAsSeen = async (notificationId,seen)=>{
     }
 }
 
+const updateAllUserNotificatins = async(userId)=>{
+    try{
+        return await notificationRepo.updateAllUserNotificatins(userId);
+    }catch (err) {
+        throw new Error(err.message);
+    }
+}
+
 
 module.exports = { 
     createNotification,
     getAllUserNotifications,
-    markNotificationAsSeen
+    markNotificationAsSeen,
+    updateAllUserNotificatins
  };

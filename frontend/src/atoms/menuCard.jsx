@@ -4,11 +4,12 @@ import Image from "next/image";
 
 const MenuCard = ({ id, isAdmin, image, price, title, discription, onEdit }) => {
   console.log("alooo",isAdmin);
-  
+  const BASE_URL = "http://localhost:5000"
+  const imageUrl = image.startsWith('http') ? image  : `${BASE_URL}/${image}`; // If image is a relative path
   return (
     <div className="w-full items-center max-w-[280px] h-auto sm:h-[400px] border-2 border-solid border-[#cfcfce] rounded-[12px] flex flex-col">
       <div className="relative w-full aspect-[4/3]">
-        <Image src={"/Mask group.svg"} fill alt={title} className="object-cover rounded-t-[10px]"/>
+        <Image src={`http://localhost:5000${image}`} fill alt={title} className="object-cover rounded-t-[10px]"/>
       </div>
       <div className="flex-1 flex flex-col justify-around items-center px-4 sm:px-[10px] py-4 sm:py-[20px] gap-2 sm:gap-3">
         <h2 className="text-[#AD343E] font-bold text-lg sm:text-[20px] font-sans">${price}</h2>

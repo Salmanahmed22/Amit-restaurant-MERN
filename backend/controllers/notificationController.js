@@ -5,14 +5,12 @@ const jsend = require('jsend');
 const getAllUserNotifications = async (req, res, next) => {
     try{
         const userId = req.query.userId;
-        console.log("alooo",userId);
         
         const notifications = await notificationServices.getAllUserNotifications(userId);
         res.json(jsend.success({ "notifications": notifications }));
     }catch(err){
-        throw new Error(err.message)
+        res.status(500).json(jsend.error({message: err.message}));
     }
-    
 }
 
 const markNotificationAsSeen = async (req, res, next) => {
@@ -30,7 +28,20 @@ const markNotificationAsSeen = async (req, res, next) => {
 
 }
 
+const markAllUserNotificationAsSeen = async (req,res) => {
+    try{
+        const userId = req.query.userId;
+        console.log(userId);
+        
+        const updatedNotification = await notificationServices.updateAllUserNotificatins(userId);
+        res.json(jsend.success({ "notification": updatedNotification }));
+    }catch(err){
+        res.status(500).json(jsend.error({message: err.message}));
+    }
+}
+
 module.exports = {
     getAllUserNotifications,
-    markNotificationAsSeen
+    markNotificationAsSeen,
+    markAllUserNotificationAsSeen
 }

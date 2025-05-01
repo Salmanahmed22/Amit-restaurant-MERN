@@ -1,4 +1,5 @@
 const mealRepo = require('../repos/mealRepo');
+const multer = require('multer');
 
 const getAllMeals = async () => {
     try{
@@ -17,17 +18,17 @@ const getMealsByCategory = async (category) => {
 }
 
 const createMeal = async (meal) => {
-    try{
+    try {
         return await mealRepo.createMeal(meal);
-    }catch(err){
+    } catch(err) {
         throw new Error(err.message);
     }
 }
 
 const updateMeal = async (id, meal) => {
-    try{
+    try {
         return await mealRepo.updateMeal(id, meal);
-    }catch(err){
+    } catch(err) {
         throw new Error(err.message);
     }
 }

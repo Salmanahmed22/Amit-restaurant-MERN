@@ -11,7 +11,6 @@ export default function ProfilePage() {
   const [selectedTab, setSelectedTab] = useState(
     () => localStorage.getItem("selectedTab") || "edit-menu-items"
   );
-
   // Update localStorage whenever selectedTab changes
   useEffect(() => {
     localStorage.setItem("selectedTab", selectedTab);

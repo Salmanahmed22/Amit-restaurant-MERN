@@ -3,7 +3,8 @@ const router = express.Router();
 const notificationController = require('../controllers/notificationController');
 
 router.get('/', notificationController.getAllUserNotifications);
-router.put('/update', notificationController.markNotificationAsSeen);
+router.put('/', notificationController.markNotificationAsSeen);
+router.put('/mark-all-read', notificationController.markAllUserNotificationAsSeen);
 
 
 module.exports = router

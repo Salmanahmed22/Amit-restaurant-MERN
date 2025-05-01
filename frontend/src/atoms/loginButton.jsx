@@ -90,9 +90,9 @@ export default function LoginButton({ display }) {
     setAnchorEl(null);
     toast.success("Logout successfully!");
     setTimeout(() => {
-      router.push("/");
+      window.location.reload();
     }, 1000);
-    window.location.reload();
+    router.push("/");
   };
 
   return (

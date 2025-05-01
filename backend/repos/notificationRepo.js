@@ -35,9 +35,21 @@ const updateNotification = async(notificationId, seen) => {
     }
 }
 
+const updateAllUserNotificatins = async (userId) => {
+    try {
+        console.log("updateAllUserNotificatins",userId);
+        
+        return await Notification.updateMany({ userId }, { $set: { seen: true } });
+    } catch (err) {
+        throw new Error(err.message);
+    }
+};
+
+
 module.exports = {
     createNotification,
     getAllUserNotifications,
     getNotificationById,
-    updateNotification
+    updateNotification,
+    updateAllUserNotificatins
 }
