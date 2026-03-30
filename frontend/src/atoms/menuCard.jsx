@@ -3,8 +3,8 @@ import React from "react";
 import Image from "next/image";
 const MenuCard = ({ id, isAdmin, image, price, title, discription, onEdit }) => {
   return (
-    <div className="w-full items-center max-w-[280px] h-auto sm:h-[400px] border-2 border-solid border-[#cfcfce] rounded-[12px] flex flex-col">
-      <div className="relative w-full aspect-[4/3]">
+    <div className="w-full items-center max-w-[300px] h-[350px] border-2 border-solid border-[#cfcfce] rounded-[12px] flex flex-col">
+      <div className="relative w-full aspect-[4/3] h-[50%]">
         <Image src={`http://localhost:5000${image}`} fill alt={title} sizes="auto" priority className="object-cover rounded-t-[10px]"/>
       </div>
       <div className="flex-1 flex flex-col justify-around items-center px-4 sm:px-[10px] py-4 sm:py-[20px] gap-2 sm:gap-3">

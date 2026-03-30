@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaBars, FaTimes } from "react-icons/fa";
 import LoginButton from "../atoms/loginButton";
@@ -8,11 +8,15 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 
 const AdminNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [loggedin, setLoggedin] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  const loggedin = Cookies.get("loggedin") === "true";
+
+  useEffect(() => {
+    setLoggedin(Cookies.get("loggedin") === "true");
+  }, []);
 
   
   return (
@@ -20,8 +24,12 @@ const AdminNav = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <div className="flex gap-[15px] items-center">
+          <span>
           <Image src="/logo.svg" width={50} height={50} alt="logo" />
-          <Image src="/logoName.svg" width={200} height={50} alt="logo name" className="hidden sm:block" />
+          </span>
+          <span>
+            <Image src="/logoName.svg" width={200} height={50} alt="logo name" className="hidden sm:block" />
+          </span>
         </div>
 
         {/* Desktop Navigation */}

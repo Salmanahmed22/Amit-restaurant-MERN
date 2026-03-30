@@ -22,7 +22,7 @@ const Nav2 = () => {
   const pathname = usePathname()
   const loggedin = Cookies.get("loggedin") === "true"
   const userId = Cookies.get("id");
-  console.log("heyy", loggedin)
+  console.log("is login? ", loggedin)
 
   useEffect(() => {
     async function fetchUserNotifications() {
@@ -81,9 +81,9 @@ const Nav2 = () => {
     <nav className="w-full py-4 px-4 sm:px-6 lg:px-8 xl:px-[180px]">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
-        <div className="flex gap-[15px] items-center">
-          <Image src="/logo.svg" width={50} height={50} alt="logo" />
-          <Image src="/logoName.svg" width={200} height={50} alt="logo name" className="hidden sm:block" />
+        <div className="flex gap-[15px] justify-center items-center">
+          <Image src="/logo.svg" width={50} height={50} alt="logo"/>
+          <Image src="/logoName.svg" width={200} height={50} alt="logo name" className="hidden sm:block w-auto h-auto" />
         </div>
 
         {/* Desktop Navigation */}

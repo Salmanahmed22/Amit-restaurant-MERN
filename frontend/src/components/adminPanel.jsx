@@ -37,13 +37,15 @@ export default function ProfilePage() {
   return (
     <div className="container mx-auto p-4">
       <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="edit-menu-items">Edit menu items</TabsTrigger>
-          <TabsTrigger value="add-menu-items">Add menu items</TabsTrigger>
-          <TabsTrigger value="pending-bookings">Pending bookings</TabsTrigger>
-          <TabsTrigger value="users">Users</TabsTrigger>
-          <TabsTrigger value="register-admin">Register Admin</TabsTrigger>
-        </TabsList>
+        <div className="pb-8 md:pb-10 lg:pb-6">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 md:grid-cols-3 gap-y-1">
+            <TabsTrigger value="edit-menu-items">Edit menu items</TabsTrigger>
+            <TabsTrigger value="add-menu-items">Add menu items</TabsTrigger>
+            <TabsTrigger value="pending-bookings">Pending bookings</TabsTrigger>
+            <TabsTrigger value="users">Users</TabsTrigger>
+            <TabsTrigger value="register-admin">Register Admin</TabsTrigger>
+          </TabsList>
+        </div>
 
         <TabsContent value="edit-menu-items">
           <Menu />

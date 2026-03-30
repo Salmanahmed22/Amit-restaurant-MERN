@@ -97,7 +97,7 @@ const Menu = () => {
         ))}
       </div>
 
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-[20px] mt-6 sm:mt-8 lg:mt-10 px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-[20px] mt-6 sm:mt-8 lg:mt-10 px-4 max-w-screen-xl mx-auto">
         {filteredItems.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((item) => (
           <MenuCard
             id={item._id}

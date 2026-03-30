@@ -77,13 +77,13 @@ const Signup = () => {
 
   return (
     <div className="w-full h-auto flex flex-col justify-center items-center bg-[#F9F9F7] pb-[40px]">
-      <Toaster position="top-center"/>
+      <Toaster position="top-center" reverseOrder={false} />
       <h1 className="text-[#2C2F24] font-playfair text-[40px] md:text-[60px] lg:text-[80px] text-center">
         Signup
       </h1>
       <form 
         onSubmit={handleSubmit} 
-        className="flex flex-col justify-center w-[650px] h-auto bg-[#fff] rounded-[16px] p-8 shadow-lg gap-3"
+        className="flex flex-col justify-center w-[90%] sm:w-[500px] md:w-[550px] lg:w-[650px] h-auto bg-white rounded-[16px] p-6 sm:p-8 shadow-lg gap-4"
       >
         <div>
           <Label className="text-[#414536] font-medium" htmlFor="username">Username</Label>
